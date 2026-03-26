@@ -4,10 +4,9 @@ import com.example.interview_scheduler.dto.Userdto;
 import com.example.interview_scheduler.entity.User;
 import com.example.interview_scheduler.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -17,10 +16,10 @@ public class UserController {
     public UserController(UserService userService) {
         this.userService = userService;
     }
-
     @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody Userdto userDTO){
-        User user = userService.registerUser(userDTO);
-        return ResponseEntity.ok(user);
+    public ResponseEntity<User> register(@RequestBody User user){
+        System.out.println(user);  // 👈 add this
+        return ResponseEntity.status(201).body(userService.registerUser(user));
     }
+
 }

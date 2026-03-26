@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.logging.Level;
 
 @RestController
 @RequestMapping("/api/candidates")
@@ -23,5 +24,18 @@ public class CandidateListController {
     @GetMapping
     public List<Candidatelist> getAll() {
         return service.getAllCandidates();
+    }
+    @PutMapping("/{id}")
+    public Candidatelist update(@PathVariable Long id, @RequestBody Candidatelist updated){
+        return service.updateCandidate(id,updated);
+    }
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable Long id){
+        service.deleteCandidate(id);
+        return "Candidate deleted successfully";
+    }
+    @PatchMapping("/{id}/level")
+    public Candidatelist updateLevel(@PathVariable Long id, @RequestParam Integer level){
+        return service.updateLevel(id, level);
     }
 }
