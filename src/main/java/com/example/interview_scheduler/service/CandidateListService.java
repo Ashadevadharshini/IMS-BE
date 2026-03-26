@@ -10,4 +10,9 @@ public interface CandidateListService {
 
     List<Candidatelist> getAllCandidates();
 
+    void deleteCandidate(Long id);
+
+    Candidatelist updateCandidate(Long id, Candidatelist updated);
+
+    Candidatelist updateLevel(Long id, Integer level);
 }

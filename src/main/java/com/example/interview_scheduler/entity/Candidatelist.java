@@ -1,21 +1,19 @@
 package com.example.interview_scheduler.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
-@Data
-@Getter
-@Setter
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Candidatelist {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
+
+    private String candidateId;
 
     private String name;
     private String email;
@@ -23,5 +21,9 @@ public class Candidatelist {
     private String skill;
     private String degree;
     private String experience;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    private Integer level;
 }
